@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Predicción - UPAO</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles-bg" id="particles-js"></div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-circle">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1>Sistema de Predicción de Rendimiento Académico</h1>
+                        <p class="subtitle">Universidad Privada Antenor Orrego</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Info Card única - Modelo -->
+        <div class="info-section">
+            <div class="info-card-large">
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <div class="info-text">
+                    <h3>Modelo de Machine Learning</h3>
+                    <p>Predicción basada en <strong>Regresión Logística</strong></p>
+                    <p class="info-description">Analiza variables clave del estudiante para determinar su rendimiento académico potencial</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <!-- Formulario -->
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>📝 Datos del Estudiante</h2>
+                    <p class="form-subtitle">Complete todos los campos para obtener la predicción</p>
+                </div>
+                
+                <div id="form-fields" class="form-fields">
+                    <div class="form-group">
+                        <label for="genero">
+                            <span class="label-icon">👤</span>
+                            Género
+                        </label>
+                        <select id="genero" name="genero" required>
+                            <option value="">Seleccione...</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apoyo_familiar">
+                            <span class="label-icon">❤️</span>
+                            Nivel de Apoyo Familiar
+                        </label>
+                        <div class="range-container">
+                            <input type="range" id="apoyo_familiar_range" min="1" max="5" value="3" class="slider">
+                            <input type="number" id="apoyo_familiar" name="apoyo_familiar" min="1" max="5" value="3" required>
+                        </div>
+                        <div class="range-labels">
+                            <span>Bajo (1)</span>
+                            <span>Alto (5)</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ingresos_familiares">
+                            <span class="label-icon">💰</span>
+                            Nivel de Ingresos Familiares
+                        </label>
+                        <div class="range-container">
+                            <input type="range" id="ingresos_familiares_range" min="1" max="5" value="3" class="slider">
+                            <input type="number" id="ingresos_familiares" name="ingresos_familiares" min="1" max="5" value="3" required>
+                        </div>
+                        <div class="range-labels">
+                            <span>Bajo (1)</span>
+                            <span>Alto (5)</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horas_estudio">
+                            <span class="label-icon">📚</span>
+                            Horas de Estudio Semanal
+                        </label>
+                        <input type="number" id="horas_estudio" name="horas_estudio" min="0" max="168" placeholder="Ej: 15" required>
+                        <small class="input-hint">Ingresa un valor entre 0 y 168 horas</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="actividades_extra">
+                            <span class="label-icon">⚽</span>
+                            Actividades Extracurriculares (horas/semana)
+                        </label>
+                        <input type="number" id="actividades_extra" name="actividades_extra" min="0" max="40" placeholder="Ej: 5" required>
+                        <small class="input-hint">Deportes, música, arte, etc.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nivel_educativo_padres">
+                            <span class="label-icon">🎓</span>
+                            Nivel Educativo de los Padres
+                        </label>
+                        <div class="range-container">
+                            <input type="range" id="nivel_educativo_padres_range" min="1" max="5" value="3" class="slider">
+                            <input type="number" id="nivel_educativo_padres" name="nivel_educativo_padres" min="1" max="5" value="3" required>
+                        </div>
+                        <div class="range-labels">
+                            <span>Primaria (1)</span>
+                            <span>Posgrado (5)</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="acceso_internet">
+                            <span class="label-icon">🌐</span>
+                            Acceso a Internet
+                        </label>
+                        <select id="acceso_internet" name="acceso_internet" required>
+                            <option value="">Seleccione...</option>
+                            <option value="1">✅ Sí</option>
+                            <option value="0">❌ No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clima_familiar">
+                            <span class="label-icon">🏠</span>
+                            Clima Familiar
+                        </label>
+                        <div class="range-container">
+                            <input type="range" id="clima_familiar_range" min="1" max="5" value="3" class="slider">
+                            <input type="number" id="clima_familiar" name="clima_familiar" min="1" max="5" value="3" required>
+                        </div>
+                        <div class="range-labels">
+                            <span>Malo (1)</span>
+                            <span>Excelente (5)</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="asistencia">
+                            <span class="label-icon">✅</span>
+                            Asistencia (%)
+                        </label>
+                        <input type="number" id="asistencia" name="asistencia" min="0" max="100" placeholder="Ej: 90" required>
+                        <small class="input-hint">Porcentaje de asistencia a clases</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="motivacion">
+                            <span class="label-icon">🔥</span>
+                            Nivel de Motivación
+                        </label>
+                        <div class="range-container">
+                            <input type="range" id="motivacion_range" min="1" max="5" value="3" class="slider">
+                            <input type="number" id="motivacion" name="motivacion" min="1" max="5" value="3" required>
+                        </div>
+                        <div class="range-labels">
+                            <span>Baja (1)</span>
+                            <span>Alta (5)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="predict-btn" class="btn-primary">
+                    <span class="btn-icon">🚀</span>
+                    Realizar Predicción
+                </button>
+                
+                <button id="clear-btn" class="btn-secondary">
+                    <span class="btn-icon">🔄</span>
+                    Limpiar Formulario
+                </button>
+            </div>
+
+            <!-- Resultados -->
+            <div class="result-container">
+                <div class="result-header">
+                    <h2>📊 Resultado de Predicción</h2>
+                </div>
+                
+                <div id="result-content" class="result-content">
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <p class="empty-text">Complete el formulario para obtener la predicción</p>
+                        <p class="empty-subtext">El sistema analizará los datos del estudiante</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Universidad Privada Antenor Orrego - Proyecto de Aprendizaje Estadístico</p>
+            <p class="footer-subtitle">Sistema desarrollado con Machine Learning</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
